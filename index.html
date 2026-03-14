@@ -397,16 +397,18 @@ const corridors = [{"corridor": "China \u2192 United States", "C_2017": 607610.0
     html += '<th>Corridor</th><th>C₂₀₁₇</th><th>C₂₀₂₃</th><th>ΔC</th><th>Δf</th><th>ΔB</th><th>ΔE</th>';
     html += '</tr></thead><tbody>';
     corridors.forEach(c => {
-        const cls = v => v > 0 ? 'pos' : (v < 0 ? 'neg' : '');
         const fmt = v => v > 0 ? '+' + v.toLocaleString() : v.toLocaleString();
+        const sty = v => v > 0
+            ? 'color:#dc2626;font-weight:700'
+            : (v < 0 ? 'color:#15803d;font-weight:700' : '');
         html += `<tr>
             <td>${c.corridor}</td>
             <td>${c.C_2017.toLocaleString()}</td>
             <td>${c.C_2023.toLocaleString()}</td>
-            <td class="${cls(c.delta_C)}">${fmt(c.delta_C)}</td>
-            <td class="${cls(c.delta_f)}">${fmt(c.delta_f)}</td>
-            <td class="${cls(c.delta_B)}">${fmt(c.delta_B)}</td>
-            <td class="${cls(c.delta_E)}">${fmt(c.delta_E)}</td>
+            <td style="${sty(c.delta_C)}">${fmt(c.delta_C)}</td>
+            <td style="${sty(c.delta_f)}">${fmt(c.delta_f)}</td>
+            <td style="${sty(c.delta_B)}">${fmt(c.delta_B)}</td>
+            <td style="${sty(c.delta_E)}">${fmt(c.delta_E)}</td>
         </tr>`;
     });
     html += '</tbody></table>';
